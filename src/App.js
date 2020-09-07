@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import ListadoNoticias from "./components/ListadoNoticias";
+import axios from "axios";
 
 function App() {
   // Definir la categoria y noticias
@@ -10,11 +11,10 @@ function App() {
 
   useEffect(() => {
     const consultarAPI = async () => {
-      const url = `http://newsapi.org/v2/top-headlines?country=mx&category=${categoria}&apiKey=API_KEY`;
-      const respuesta = await fetch(url);
-      const noticias = await respuesta.json();
+      const url = `https://newsapi.org/v2/top-headlines?country=mx&category=${categoria}&apiKey=API_KEY`;
+      const noticias = await axios.get(url);
 
-      setNoticias(noticias.articles);
+      setNoticias(noticias.data.articles);
     };
     consultarAPI();
   }, [categoria]);
