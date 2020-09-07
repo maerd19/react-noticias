@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 
 function App() {
+  // Definir la categoria y noticias
+  const [categoria, setCategoria] = useState("");
+
   return (
     <>
       <Header titulo="Buscador de Noticias" />
       <div className="container white">
-        <Formulario />
+        <Formulario setCategoria={setCategoria} />
       </div>
     </>
   );
